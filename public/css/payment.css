@@ -1,0 +1,26 @@
+/* Custom styles */
+
+body {
+    background-image: url('/images/parent\ lab.jfif');
+    background-size: cover;
+  }
+  
+  .main-content {
+    padding-top: 50px; /* Adjust according to your navbar height */
+  }
+  
+  /* .sidebar { */
+    /* background-color: #052546; */
+    /* border-right: 1px solid #022547; */
+  /* } */
+  
+  .content {
+    padding: 20px;
+  }
+  
+  .footer {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+  }
+  

@@ -1,0 +1,15 @@
+body {
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+}
+
+.card {
+    margin-top: 50px;
+}
+
+.footer {
+    background-color: #343a40;
+    color: #fff;
+    padding: 20px 0;
+}
