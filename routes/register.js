@@ -2,18 +2,20 @@ const express = require("express");
 const router = express.Router();
 
 // import model
-const Application = require("../model/Application");
+const register = require("../model/register");
 
-router.get("/registerBaby", (req, res) => {
-  res.render("babiesregistration");
+router.get("/babyregistration", (req, res) => {
+  res.render("babyregistration");
+
 });
 
-router.post("/registerBaby", async (req, res) => {
+
+router.post("/Baby-registration ", async (req, res) => {
   try {
-    const baby = new Application(req.body);
-    console.log();
+    const baby = new register(req.body);
+    console.log(user);
    await baby.save();
-    res.send("Baby registered successfully")
+    res.send("Baby-registered successfully")
     
   } catch (error) {
     res.status(400).send("Sorry, error occurred, baby not registered")
@@ -22,5 +24,9 @@ router.post("/registerBaby", async (req, res) => {
   }
  
 });
+
+
+
+
 
 module.exports = router;

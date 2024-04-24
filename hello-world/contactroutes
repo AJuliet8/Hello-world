@@ -1,0 +1,29 @@
+
+const expres =require("express");
+// accessing the router function in express
+const router =express.Router();
+// introduce model
+const contact = require("../models/class");
+// creating the route
+router.get("/contact",(req,res)=>{
+    // res.render("/class");
+});
+
+// posting the post routes
+router.post("/contact",async(req,res)=>{
+try{
+    const contact =new contact(req.body);
+    await contct.save();
+    console.log(req.body);
+    res.redirect("/contact");
+
+}
+catch(error){
+    console.log(error);
+}
+
+
+ });
+
+// exportation
+modules.exports=expres.Router;

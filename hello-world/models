@@ -1,0 +1,18 @@
+const mongoose =require("mongoose");
+
+// // access the schema function in mongose
+// const schema =mongoose.Schema;
+
+// // ussing the function to build a schema
+// const contactSchema =new Schema({
+
+//         email:{type:String},
+//         password:{type:String,trim:true}
+//         address:{type:String,number},
+//         address:{type:String},
+//         city:{type:String},
+//         state:{type:String},
+//         Zip:{type:String},
+//         checkout:{type:String},
+// });
+module.exports =mongoose.models("contactSchema");

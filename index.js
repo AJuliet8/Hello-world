@@ -1,31 +1,42 @@
 const express = require("express");
 const mongoose = require("mongoose");// for mongodb
-const path = require("path");//for pug
+const path = require("path");
+ const passport =require("passport") 
+ const expressSession =require ("express-session");({
+  secret:"secret",
+  resave:false,
+  saveUnitialized:false
+ })
 require("dotenv").config();
 
-const port =  3500;
-// importing routes
-const registrationRoutes = require("./routes/register")
+// importregister model with user details
+const register = require("./model/register");
 
+const port =  3500;
+// importing route
+// const contactRoutes = require("./routes/contactroute")
+ const adminreg=require("./routes/adminreg");
+ const authenticationRoute =require("./routes/AutheticationRoute");
+ const registrationRoutes =require("./routes/RegistrationRoutes")
 
 const app = express()
 // intallations
 
 
 // configguration
-mongoose.connect(process.env.DATABASE,{
-  useNewUrlParser: true,
- useUnifiedTopology: true,
-});
  
+mongoose.connect(process.env.DATABASE, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+
 mongoose.connection
   .once("open", () => {
-   console.log("Mongoose connection open");
- })
-
-  .on("error", err => {
+    console.log("Mongoose connection open");
+  })
+  .on("error", (err) => {
     console.error(`Connection error: ${err.message}`);
-});
+  });
   // Set view engine as pug
 app.set("view engine","pug");//setting the view engine to pug
 app.set("views",path.join(__dirname,"views"));
@@ -33,16 +44,32 @@ app.set("views",path.join(__dirname,"views"));
 app.use(express.static(path.join(__dirname,"public")))//set directory for static files
 
 // // middleware
+app.use(express.static(path.join(__dirname,"public")))
 app.use(express.urlencoded({extended:true}))
 app.use(express.json());
-// Routes
-app.get("/babiesregistration",(req,res)=>{
-  res.render("babiesregistration") });
+
+ 
+
+
+// // expressSesion configuration
+  app.use(expressSession);
+ app.use(passport.initialize(
+  app.use(passport.session())
+));
+// //   // passport configuration
+  passport.use(register.createStrategy());
+  passport.serializeUser(register.serializeUser());
+  passport.deserializeUser(register.deserializeUser);
+
+
+// Routes for pug
+
 
 // useimported routes
 app.use("/", registrationRoutes);
-
-
+// app.use("/",contactRoutes);
+ app.use("/",adminreg);
+app.use("/",authenticationRoute);
 // app.get("/", (req, res) => {
 //   res.send("homepage Hello World");
 // });
@@ -86,6 +113,14 @@ app.use("/", registrationRoutes);
 app.get("*", (req, res) => {
   res.json({message:"babiesregistration",});
 });
+app.get("/adminreg", (req, res) => {
+  res.json({message:"adminreg",});
+
+});
+ app.get("*",(req,res) =>{
+  res.json({message:"adminregistration"})
+ })
+
 
 // bootstrapping server
 
