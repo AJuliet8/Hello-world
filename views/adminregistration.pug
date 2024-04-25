@@ -24,22 +24,24 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
       .card
         .card-header.bg-primary.text-white Admin Registration Form
         .card-body
-          form#registrationForm
+          form#registrationForm(action="/")
             .form-group
-              label(for='Juliet Ahereza') Full Name
-              input#fullName.form-control(type='text' placeholder='Enter your full name' required='')
+              label(for='fullName') Full Name
+              input#fullName.form-control(type='text' name="fullname" )
             .form-group
-              label(for='juliet5@gmail.com') Email
-              input.form-control(type='email' id='juliet5@gmail.com' placeholder='Enter your email address' required='')
+              label(for='email') Email
+              input#email.form-control(type='email' name="email")
             .form-group
-              label(for='juliet5') Password
-              input#juliet5.form-control(type='password' placeholder='Enter a password' required='')
+              label(for='password') Password
+              input#password.form-control(type='password' name="password")
             .form-group
-              label(for='juliet5') Confirm Password
-              input#juliet5.form-control(type='password' placeholder='Confirm your password' required='')
+              label(for='confirmpassword') Confirm Password
+              input#confirmpassword.form-control(type='password' name="confirmpassword")
             .form-group
-              label(for='admin roll') Roll
-              input#roll.form-control(type='text' placeholder='Enter your roll' required='')
+              label(for='role') Role
+              selection#role.form-control(type='text' name="role")
+                 option(value="") (Select a role)
+                option(value="admin") Admin
             button.btn.btn-primary(type='submit') Register
 footer.footer.mt-5.py-3.bg-dark.text-white
   .container.text-center

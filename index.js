@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");// for mongodb
 const path = require("path");
+const cors = require("cors");
  const passport =require("passport") 
  const expressSession =require ("express-session");({
   secret:"secret",
@@ -47,7 +48,7 @@ app.use(express.static(path.join(__dirname,"public")))//set directory for static
 app.use(express.static(path.join(__dirname,"public")))
 app.use(express.urlencoded({extended:true}))
 app.use(express.json());
-
+app.use(cors());
  
 
 
@@ -111,15 +112,9 @@ app.use("/",authenticationRoute);
 
 //for invalid routes
 app.get("*", (req, res) => {
-  res.json({message:"babiesregistration",});
+  res.json({message:"404 page not found",});
 });
-app.get("/adminreg", (req, res) => {
-  res.json({message:"adminreg",});
 
-});
- app.get("*",(req,res) =>{
-  res.json({message:"adminregistration"})
- })
 
 
 // bootstrapping server

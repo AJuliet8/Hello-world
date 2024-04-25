@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 // import model
-const register = require("../model/registrationmodel");
+const Registration = require("../model/registrationmodel");
 
  router.get("/adminregistration", (req, res) => {
    res.render("adminregistration");
@@ -10,15 +10,15 @@ const register = require("../model/registrationmodel");
  });
 // ``
 
-router.post("adminregistration", async (req, res) => {
+router.post("/adminregistration", async (req, res) => {
     try {
-      const adminregistration= new adminregistration(req.body);
+      const user= new Registration(req.body);
       console.log(user);
-     await adminregistration.adminregistration(adminregistration,req.body.password,(err) =>{
+     await Registration.register(user,req.body.password,(err) =>{
         if(err){
             throw err
         }
-        res.redirect("./adminregistration")
+        res.redirect("/adminregistration")
     })
 } catch (err) {
     res.status(400).send("user not adminregistration")
